@@ -8,12 +8,19 @@ router.get("/",(req,res)=>{
     res.send(shoppingCards)
 })
 
-router.post("/",(req,res)=>{
+router.post("/",async(req,res)=>{
 
     const shoppingCard = new ShoppingCard({
         userId : req.body.userId,
         productId: req.body.productId
     })
+    try{
+        const result =  await shoppingCard.save()
+        res.send(result)
+      }
+      catch (err){
+          console.log(err)
+      }
 })
 
 module.exports = router

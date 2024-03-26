@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const mongoose = require("mongoose")
 const dotenv  = require('dotenv').config({ path: `${__dirname}/.env` })
+const cors = require('cors');
 
 const productsRouter = require("./routes/products")
 const homeRouter = require("./routes/home")
@@ -12,12 +13,18 @@ const shoppingCardsRouter = require("./routes/shoppingCards")
 const url =dotenv.parsed.url ;
 //Mİddleware
 app.use(express.json())
-
+const corsOptions = {
+    origin: 'http://localhost:3000', // React uygulamanızın çalıştığı URL
+  };
+  
+  app.use(cors(corsOptions));
 //Routers
 app.use("/api/products" ,productsRouter);
 app.use("/api/users",usersRouter)
 app.use("/api/shoppingCards",shoppingCardsRouter)
 app.use("/", homeRouter);
+
+
 
 
 

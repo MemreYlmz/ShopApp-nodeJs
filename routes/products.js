@@ -26,5 +26,16 @@ router.post("/", async (req,res)=>{
       }
 })
 
+router.put("/:id", async function(req, res) {
+    try {
+        const id = req.params.id;
+        const updatedProduct = await Product.findByIdAndUpdate(id, req.body, { new: true });
+        res.send(updatedProduct);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Ürün güncellenirken bir hata oluştu.");
+    }
+});
+
 
 module.exports = router

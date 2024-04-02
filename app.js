@@ -38,8 +38,6 @@ app.use("/", homeRouter);
 })();
 
 
-
-console.log("ANANI SİKEYİM")
 app.listen(3001 , ()=>{
     console.log("aa")
 })

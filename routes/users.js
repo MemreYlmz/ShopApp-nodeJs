@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const User = require("../models/user")
+const { route } = require("./products")
 
 router.get("/" ,async (req,res)=>{
     const users = await User.find()
@@ -22,6 +23,13 @@ router.post("/", async(req,res)=>{
       catch (err){
           console.log(err)
       }
+})
+
+router.post("/checkUser" , async(req,res)=>{
+
+    //req.body içinde userName ve password gelecek 
+    //Bunları db de kontrol et böyle biri var mı diye kulllanıdı varsa tüm bilgilerini sini döndür yoksa null döndür hata fırlatma db çöker
+
 })
 
 module.exports = router
